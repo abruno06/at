@@ -15,14 +15,14 @@ const Sub = "\x1A"
 // "AT"
 const AT = "AT"
 
-type Device struct {
+type Modem struct {
 	DevicePort string
 	Speed      int
 
 	port *serial.Port
 }
 
-func Open(d *Device) error {
+func Open(d *Modem) error {
 	mode := &serial.Mode{
 		BaudRate: d.Speed,
 	}
@@ -31,6 +31,17 @@ func Open(d *Device) error {
 		log.Fatal(err)
 		return err
 	}
+	//for debug purpose, make Serial port accessible to the Modem struct
 	d.port = &port
 	return nil
+
+}
+
+func Close(d *Modem) error {
+	port := *d.port
+	return port.Close()
+}
+
+func Port(d *Modem) serial.Port {
+	return *d.port
 }
