@@ -1,4 +1,4 @@
-module at
+module github.com/abruno06/at
 
 go 1.18
 
