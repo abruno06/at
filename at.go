@@ -6,11 +6,16 @@ import (
 	"go.bug.st/serial"
 )
 
-func Open() (serial.Port, error) {
+type Device struct {
+	Port  string
+	Speed int
+}
+
+func Open(d *Device) (serial.Port, error) {
 	mode := &serial.Mode{
-		BaudRate: 115200,
+		BaudRate: d.Speed,
 	}
-	port, err := serial.Open("/dev/ttyUSB0", mode)
+	port, err := serial.Open(d.Port, mode)
 	if err != nil {
 		log.Fatal(err)
 	}
