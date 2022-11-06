@@ -29,7 +29,8 @@ func Open(d *Device) error {
 	port, err := serial.Open(d.DevicePort, mode)
 	if err != nil {
 		log.Fatal(err)
+		return err
 	}
 	d.port = &port
-	return err
+	return nil
 }
