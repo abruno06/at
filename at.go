@@ -1,8 +1,6 @@
 package at
 
 import (
-	"log"
-
 	"go.bug.st/serial"
 )
 
@@ -28,7 +26,6 @@ func Open(d *Modem) error {
 	}
 	port, err := serial.Open(d.DevicePort, mode)
 	if err != nil {
-		log.Fatal(err)
 		return err
 	}
 	//for debug purpose, make Serial port accessible to the Modem struct
