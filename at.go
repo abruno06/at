@@ -6,7 +6,7 @@ import (
 	"go.bug.st/serial"
 )
 
-func Open() serial.Port {
+func Open() (serial.Port, error) {
 	mode := &serial.Mode{
 		BaudRate: 115200,
 	}
@@ -14,5 +14,5 @@ func Open() serial.Port {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return port
+	return port, err
 }
